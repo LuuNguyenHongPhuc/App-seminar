@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            font-weight: 400;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        .root {
+
+            background-color: aliceblue;
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .head {
+            width: 70%;
+            height: 120px;
+            padding: 24px;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .avt {
+            width: 95px;
+            height: 95px;
+
+        }
+
+        .avt img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .head>span {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .head>span>span * {
+            display: block;
+            margin: 6px;
+
+        }
+
+        .fix-button {
+            padding: 4px 16px;
+            background-color: blue;
+            color: white;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .fix-button:hover {
+            border: 1px solid blue;
+            color: blue;
+            background-color: white;
+        }
+
+        .active {
+            color: green;
+        }
+
+        .created_at {
+            color: gray;
+        }
+
+        .info {
+            width: 45%;
+            height: 320px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            gap: 12px;
+        }
+
+        .account-info {
+            gap: 12px;
+            width: 45%;
+            padding: 14px;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .body {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 72%;
+            height: 320px;
+        }
+
+        .recent-active {
+            max-width: 70%;
+            padding: 24px;
+            width: 70%;
+            flex-grow: 1;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .event-name {
+            color: gray;
+        }
+
+        .card {
+            margin: 6px 12px;
+            border-bottom: 1px solid gray;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card * {
+            margin: 4px;
+
+        }
+
+        #info-span {
+            display: flex;
+            justify-content: start;
+            gap: 14px;
+        }
+
+        .label {
+            font-size: 18px;
+            font-weight: bold;
+            color: grey;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="root">
+        <div style="height: 20px;"></div>
+        <div class="head">
+
+            <span>
+                {% if avt %}
+                <div class="avt">
+
+                    <img src="{{avt.url}}" alt="">
+                </div>
+                {% else%}
+                <div class="avt">
+
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAgYDB//EAC0QAQACAQEGBQQBBQAAAAAAAAABAgMEBREhMUFREhMiYXEyM1KBI2JykaHR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APpIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABybY8d8uSKY6za09FvpNnUxxFs3rv2nlAKzDpc+f7ePh3nhCVj2Tln7mStfjit4jdyjcyCtjZNI55bT+oa22R+Oef3VaAKPLs3UY+MRF4/pnihzWazMWiYntLqHjn0+PPXdkr++oOdEvWaG+n9UTN8ffrVE59wAAAAAAAAAAAAAAG2Olsl4pTjaZ5NVvsrTRTH51o9d44e0Ak6PS102PdHG087dZSCOQAAAAAADFo3xu3cJ5qbaOjnDPjxR/HM8Y7LprkpGSk1tG+JBzI9dThnBntjnpyn2eQAAAAAAAAAAAAPTBj83NTH0tLo6xERERyhTbIp4tTNvxqugAAAAAAAAAAVu2MW+lcu7jWd0/CpdDrKePS5a+29zwAAAAAAAAAAAALLYv1ZfiFsqNjW/lyV71W4AAAAAAAAAANMv27/2y5p0eot4cGS3asucAAAAAAAAAAAABI0GXytVSZ5W4S6By+/sv9Dn8/T1mfqjhb5BJAAAAAAAAABC2rl8vTTXredykS9p5/O1ExH009MfPVEAAAAAAAAAAAAASNFqbabLFudJ+qEcB01LVvSLUmJrPKWyh0esnTT4Z32xzPGO3wu8WWmakWx2i0A3AAAAAAQNpayMVJx4pick8J9jW6+uKJphmLX79IU97WtO+0zNp5zIMAAAAAAAAAAAAAADNa2vaK0iZtPKIW+j2bXHuvn9V/x6QCDpdDk1HGY8NO8xx/S30+lx6au7FHGec9ZezIAAAADExvZAVup2ZW3qwT4bfjPKVXkx3xW8OSsxPu6Z5Z9Pjz0mmSsT79gc5PASdXosmnnf9VOk/wDUboAAAAAAAAAAA3w475rxTHG+0/6Yx1te8UpG+1uEQvdHpa6fHu53n6rdwNJo8enrwiJvMcbJIAAAAAAAAAAAxasWiYtETE9FPrtB5Uzkwx6J5x2XLExviY7g5jh0E7aWjnBM5cf255x2Qf8AIAAAAAAAJGhw+fqKxP0142BYbL0vl4/NvHrty9oWDERuZAAAAAAAAAAAAAABrelb1mto3xPOHP6vBbT5prP086z7OiQtqYPN082rHqpxj46gpAAAAAAFvsbD4cNssxG+88PhUS6PTU8vBSvaoPUAAAAAAAAAAAAAAABi0b45MgOb1GPyc+TH+MvNP2xTw563/KEAAAAAHpp6+PPjr3tDo4UOza+LWY/bfK+BkAAAAAAAAAAAAAAAAkAV+2Kb8Fb/AI2U6+2nXxaLJ7cVCAAD/9k="
+                        alt="">
+                </div>
+                {% endif %}
+                <span>
+                    <h1>
+                        {% if full_name%}
+                        {{full_name}}
+                        {% else %}
+                        none
+                        {% endif %}
+
+                    </h1>
+                    <h5 class="created_at">Đã tham gia ngày {{created}}</h5>
+                    <h6 class="active">Đang hoạt động</h6>
+                </span>
+            </span>
+            <span> <a href="{% url 'fix' %}">
+                    <div class="fix-button">
+                        <h2>Chỉnh sửa hồ sơ</h2>
+                    </div>
+                </a>
+                {% if is_admin %}
+                <a href="{% url 'creator' %}">
+                    <div style="color: white; padding: 4px 12px; background-color: orangered;" class="">
+                        <h2>Chuyển sang admin Panel</h2>
+                    </div>
+                </a>
+                {% endif %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="fix-button">
+                        <h2>Đăng xuất</h2>
+                    </button>
+                </form>
+            </span>
+
+        </div>
+        <div style="height: 20px;"></div>
+        <div class="body">
+
+            <div class="info">
+                <h1>Thông tin cá nhân</h1>
+                <span id="info-span">
+                    <span>
+                        <h3 class="label">
+                            Họ và tên
+                        </h3>
+                        <h2> {% if full_name%}
+                            {{full_name}}
+                            {% else %}
+                            none
+                            {% endif %}
+                        </h2>
+                    </span>
+                    <span>
+                        <h3 class="label">
+                            ngày sinh
+                        </h3>
+                        <h2> {% if birth%}
+                            {{birth}}
+                            {% else %}
+                            none
+                            {% endif %}
+                        </h2>
+                    </span>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Email
+                    </h3>
+                    <h2 class="value">{{email}}</h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Số điện thoại
+                    </h3>
+                    <h2> {% if phone%}
+                        {{phone}}
+                        {% else %}
+                        none
+                        {% endif %}
+                    </h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        địa chỉ
+                    </h3>
+                    <h2> {% if locate%}
+                        {{locate}}
+                        {% else %}
+                        none
+                        {% endif %}
+                    </h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Login lần cuối
+                    </h3>
+                    <h2> {% if last_login%}
+                        {{last_login}}
+                        {% else %}
+
+                        {% endif %}
+                    </h2>
+                </span>
+            </div>
+            <div class="account-info">
+                <h1>Thông tin tài khoản</h1>
+                <span>
+                    <h3 class="label">
+                        CCCD
+                    </h3>
+                    <h2> {% if cccd %}
+                        {{cccd}}
+                        {% else %}
+                        none
+                        {% endif %}
+                    </h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Trạng thái tài khoản
+                    </h3>
+                    <h2>Đang hoạt động</h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Quyền Truy Cập
+                    </h3>
+                    <h2> {% if is_admin%}
+                        Admin
+                        {% else %}
+                        User
+                        {% endif %}
+                    </h2>
+                </span>
+                <span>
+                    <h3 class="label">
+                        Ngày tham gia
+                    </h3>
+                    <h2>{{created}}</h2>
+                </span>
+            </div>
+        </div>
+        <div style="height: 50px;"></div>
+
+        <div class="recent-active">
+            <h1>Hoạt động gần đây</h1>
+
+
+
+            {% if recent_active %}
+            {% for active in recent_active %}
+            <div class="card">
+                <span>
+                    <h3 class="">{{active.title}}</h3>
+                    <h5 class="event-name">
+                        {{active.describe}}
+                    </h5>
+                </span>
+                <h5 class="event-name">{{active.time|timesince }} Trước</h5>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1 style="justify-self: center; align-self: center;"> Chưa có hoạt động nào</h1>
+            <div style="width: 120px; height: 120px; justify-self: center; align-self: center;">
+                <img style="width: 100%; height: 100%;" src="/media/gif/nothing.gif" alt="">
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

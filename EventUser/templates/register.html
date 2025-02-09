@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+
+
+      font-family: Arial, sans-serif;
+
+    }
+
+    .one {
+      height: 100vh;
+      width: 50%;
+      display: flex;
+
+      background-color: #E8F9FF;
+      display: flex;
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .two {
+      height: 100vh;
+      width: 50%;
+      display: flex;
+
+      justify-self: center;
+      align-items: center;
+    }
+
+    .form-container {
+      height: 100vh;
+      width: 100%;
+
+      display: flex;
+
+
+    }
+
+    img {}
+
+    .content {
+      width: 65%;
+      height: 60vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .content * {
+      display: block;
+     
+    }
+
+    
+    input {
+      padding: 12px 26px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      /* Hiệu ứng chuyển đổi mượt */
+    }
+
+    input:focus {
+      border: solid 1px #4A90E2;
+      /* Màu viền khi focus */
+      box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+      /* Hiệu ứng đổ bóng nhẹ khi focus */
+      background-color: #F9FCFF;
+      /* Màu nền nhạt khi focus */
+      outline: none;
+      /* Loại bỏ viền mặc định */
+    }
+
+    input::placeholder {
+      color: #aaa;
+      /* Màu chữ placeholder nhạt */
+      font-style: italic;
+      /* Thêm chút phong cách */
+    }
+
+    .title {
+      position: absolute;
+    }
+
+    .sign-up:hover{
+      cursor: pointer;
+      background-color: #4A90E2;
+      color: white;
+      border: none
+    }
+    .sign-up{
+      padding: 0.6rem 3rem;
+     
+      border-radius: 4px;
+      background-color: white;
+      border: solid 1px #4A90E2 ;
+      justify-self: center;
+      ;
+      color: #4A90E2;
+    }
+    h2{
+      justify-self: center;
+      font-size: 22px;
+      font-weight: 500;
+      color: #4A90E2;
+    }
+    h5{
+      justify-self: center;
+      color: black;
+      font-size: 14px;
+    }
+    h5 a{
+      color: #4A90E2;
+    }
+    @media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;  
+  }
+
+  .two {
+    display: none;  
+  }
+
+  .one {
+    width: 100%;  
+  }
+
+  .content {
+    margin: 24px 24px;
+    width: 100%;  
+  }
+
+  .sign-up {
+    width: 100%; 
+    padding: 1rem;  
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+
+  <div class="form-container">
+    <div class="one">
+      <div class="content">
+        <form method="post">
+          <h2>Sign up</h2>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <h5>If you have account please login <a href="#">here</a> </h5>
+          <button class="sign-up" type="submit">Đăng ký</button>
+        </form>
+        {% if messages %}
+  {% for message in messages %}
+   
+      {{ message }}
+ 
+  {% endfor %}
+{% endif %}
+      </div>
+    </div>
+    <div class="two">
+      <img
+        src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo="
+        alt="">
+    </div>
+  </div>
+
+</body>
+
+</html>

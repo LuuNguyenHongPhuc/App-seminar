@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/25/25694.png" type="image/x-icon" />
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            color: white;
+            background-size: 100%;
+            object-fit: cover;
+
+
+        }
+
+        header {
+            padding-top: 2.5rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            position: absolute;
+
+            height: 4rem;
+            min-height: 3rem;
+            width: 95%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+
+        }
+
+        header span {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+
+        }
+
+        header span * {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .nav-item:before {
+            content: "";
+            bottom: 6px;
+            transform: scale(0);
+            transition: 200ms ease-in;
+            height: 2px;
+            background-color: #79D7BE;
+            width: 100%;
+            position: absolute;
+        }
+
+        .nav-item:hover:before {
+            transform: scale(1);
+        }
+
+        .root {
+
+            /* position: relative; */
+
+            width: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            background-size: auto;
+            background-repeat: no-repeat;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            /* Cho trình duyệt WebKit */
+
+
+        }
+
+        .root * {
+            display: block;
+        }
+
+        .root>span {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .root>iframe {
+            animation: appearWidget 2s ease-in;
+        }
+
+        .logo {
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .content {
+            /* position: absolute; */
+
+            width: 50%;
+            height: 100vh;
+
+            flex-direction: column;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            gap: 1rem;
+        }
+
+        .content h1 {
+            font-size: 68px;
+            color: white;
+            width: 48rem;
+            animation: title 0.7s linear;
+        }
+
+        .content p {
+            animation: describe 0.7s linear;
+            color: whitesmoke;
+            width: 48rem;
+        }
+
+        .content>span {
+
+            width: 48rem;
+            display: flex;
+            gap: 1.5rem;
+            color: #F2EFE7;
+
+        }
+
+        .content>span .day {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            font-size: 32px;
+            width: 8rem;
+            height: 8rem;
+            border: 1px solid rgba(255, 255, 255, 0.452);
+        }
+
+        .content>span .day:hover {
+            border: 1px solid #79D7BE;
+            cursor: pointer;
+        }
+
+        .content>span .info {
+            gap: 6px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn.book {
+
+            align-self: flex-start;
+            padding: 12px 120px 12px 120px;
+            background-color: #79D7BE;
+            text-decoration: none;
+            color: white;
+
+        }
+
+        .btn.book:hover {
+
+            box-shadow: inset 0px 10px 20px 2px rgba(0, 255, 255, 0.7);
+        }
+
+        .logo-social {
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 12px 12px 12px;
+            border: 1px solid white;
+            transition: 300ms ease-in-out;
+        }
+
+        .logo-social:hover {
+            cursor: pointer;
+            border: 1px solid #79D7BE;
+            color: #79D7BE;
+
+        }
+
+        .recomand {
+            padding-left: 8rem;
+            padding-right: 8rem;
+            display: grid;
+            grid-gap: 15px;
+            grid-row-gap: 14rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-auto-rows: 200px;
+            grid-auto-flow: dense;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                scale: 0.5;
+
+            }
+
+            to {
+                opacity: 1;
+                scale: 1;
+
+            }
+        }
+
+        .container {
+            position: relative;
+            /* height: 19rem; */
+            height: 18rem;
+            /* border: 1px solid rgba(255, 255, 255, 0.425); */
+            width: 23rem;
+            animation: appear linear 5s;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .container:before {
+
+            position: absolute;
+            bottom: -1px;
+            content: "";
+            transform: scale(0);
+            height: 2px;
+            width: 100%;
+            background-color: white;
+            transition: 600ms ease-in;
+
+        }
+
+        .container:hover:before {
+            transform: scale(1);
+        }
+
+        .container img {
+
+            width: 100%;
+            /* height: 70%; */
+            transition: 400ms ease;
+            filter: brightness(0.9);
+        }
+
+        .container:hover img {
+
+            transform: scale(1.1);
+            filter: brightness(1.3);
+        }
+
+        .recomand-info {
+            visibility: hidden;
+        }
+
+        .container:hover {
+            /* border: 1px solid #79D7BE; */
+            background-color: #42424257;
+            cursor: pointer;
+        }
+
+        .container span {
+            padding: 4px 6px;
+        }
+
+        .container h4 {
+            padding: 6px 6px;
+        }
+
+        @keyframes title {
+            0% {
+                opacity: 0.2;
+                transform: translateX(-24px);
+            }
+
+            75% {
+                opacity: 0.5;
+                transform: translateX(-6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes describe {
+            0% {
+                opacity: 0.2;
+                transform: translateY(-24px);
+            }
+
+            75% {
+                opacity: 0.5;
+                transform: translateY(-6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes appearWidget {
+            0% {
+                opacity: 0.2;
+
+            }
+
+            75% {
+                opacity: 0.5;
+
+            }
+
+            100% {
+                opacity: 1;
+
+            }
+        }
+
+        #avt {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+        }
+
+        #avt a {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-position: center;
+        }
+
+        #avt img:hover {
+            border: 1px solid #79D7BE;
+        }
+
+        #avt img {
+            border-radius: 50%;
+            height: 100%;
+            width: 100%s;
+        }
+
+        #username {
+            color: #79D7BE;
+        }
+
+        .glassBox__imgBox {
+            width: 100%;
+            height: 400px;
+
+            max-width: 300px;
+            padding: 6px;
+            background-color: rgba(0, 0, 0, 0.15);
+
+        }
+
+        .join {
+            padding-left: 8rem;
+        }
+
+        .join-card {
+            display: flex;
+            gap: 12px;
+
+        }
+
+        .join-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .glassBox__imgBox {
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+
+        .glassBox__imgBox p {
+            opacity: 0;
+            text-align: center;
+        }
+
+        .second-content {
+            max-width: 46rem;
+
+        }
+
+        .glassBox__imgBox:hover img {
+            transition: 300ms ease-in;
+            transform: rotate(12deg) translateY(-2rem) scale(1.2);
+        }
+
+        .glassBox__imgBox p {
+
+            font-size: 14px;
+
+
+        }
+
+        .glassBox__imgBox:hover p {
+            opacity: 1;
+            transition: 300ms ease-in;
+        }
+
+        .glassBox__imgBox:hover h3 {
+            transition: 300ms ease-in;
+            transform: translateY(-1rem);
+
+        }
+
+        .glassBox__imgBox:hover {
+            transition: 200ms ease-in;
+            border: 1px solid #79D7BE;
+        }
+
+        .button-skip {
+            position: absolute;
+            top: 52rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .button-skip button {
+            position: relative;
+            border: 1px solid #79D7BE;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 0.2rem 0.2rem;
+            border-radius: 12px;
+
+        }
+
+        .button-skip button i {
+            color: white;
+            font-size: 28px;
+            padding: 2rem 2rem;
+        }
+
+        .parent {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-auto-rows: 150px;
+            gap: 10px;
+            grid-auto-flow: dense;
+
+            width: 50%;
+        }
+
+        .img-content {
+            padding-left: 9rem;
+            padding-right: 2rem;
+        }
+
+        .parent img {
+            width: 100%;
+
+            object-fit: cover;
+            border-radius: 8px;
+            animation: appear 5s linear;
+            animation-timeline: view();
+            animation-range: entry 30%;
+        }
+
+        .parent img:hover {
+            border: 1px solid #79D7BE;
+            transition: 250ms ease;
+            cursor: pointer;
+        }
+
+        .parent img:nth-child(3n) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .parent img:nth-child(5n) {
+            grid-column: span 2;
+        }
+
+        .parent img:nth-child(7n) {
+            grid-row: span 2;
+        }
+
+        .parent img:hover {
+            transform: scale(1.1);
+            transition: 200ms ease-in-out;
+        }
+
+        .second-content p {
+
+            letter-spacing: 2px;
+        }
+
+        .video {
+            width: auto;
+            height: auto;
+            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+            border: 1px solid #79D7BE;
+
+        }
+
+        .video video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body style="background-image:linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.29)), url('{{event.thumb.url}}');">
+    <header>
+        <h2 class="logo">Event Ticket</h2>
+        <span>
+            <h4 id="username">
+                <section style="color: azure;">Hi!</section>
+                <!-- KhoaDonguyen -->
+                {{ user.email }}
+            </h4>
+            {% if user %}
+            <a href="/user/info">
+                <div id="avt">
+
+                    {% if user.avt %}
+                    <img src="{{user.avt.url}}" alt="">
+
+                    {% else %}
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAgYDB//EAC0QAQACAQEGBQQBBQAAAAAAAAABAgMEBREhMUFREhMiYXEyM1KBI2JykaHR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APpIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABybY8d8uSKY6za09FvpNnUxxFs3rv2nlAKzDpc+f7ePh3nhCVj2Tln7mStfjit4jdyjcyCtjZNI55bT+oa22R+Oef3VaAKPLs3UY+MRF4/pnihzWazMWiYntLqHjn0+PPXdkr++oOdEvWaG+n9UTN8ffrVE59wAAAAAAAAAAAAAAG2Olsl4pTjaZ5NVvsrTRTH51o9d44e0Ak6PS102PdHG087dZSCOQAAAAAADFo3xu3cJ5qbaOjnDPjxR/HM8Y7LprkpGSk1tG+JBzI9dThnBntjnpyn2eQAAAAAAAAAAAAPTBj83NTH0tLo6xERERyhTbIp4tTNvxqugAAAAAAAAAAVu2MW+lcu7jWd0/CpdDrKePS5a+29zwAAAAAAAAAAAALLYv1ZfiFsqNjW/lyV71W4AAAAAAAAAANMv27/2y5p0eot4cGS3asucAAAAAAAAAAAABI0GXytVSZ5W4S6By+/sv9Dn8/T1mfqjhb5BJAAAAAAAAABC2rl8vTTXredykS9p5/O1ExH009MfPVEAAAAAAAAAAAAASNFqbabLFudJ+qEcB01LVvSLUmJrPKWyh0esnTT4Z32xzPGO3wu8WWmakWx2i0A3AAAAAAQNpayMVJx4pick8J9jW6+uKJphmLX79IU97WtO+0zNp5zIMAAAAAAAAAAAAAADNa2vaK0iZtPKIW+j2bXHuvn9V/x6QCDpdDk1HGY8NO8xx/S30+lx6au7FHGec9ZezIAAAADExvZAVup2ZW3qwT4bfjPKVXkx3xW8OSsxPu6Z5Z9Pjz0mmSsT79gc5PASdXosmnnf9VOk/wDUboAAAAAAAAAAA3w475rxTHG+0/6Yx1te8UpG+1uEQvdHpa6fHu53n6rdwNJo8enrwiJvMcbJIAAAAAAAAAAAxasWiYtETE9FPrtB5Uzkwx6J5x2XLExviY7g5jh0E7aWjnBM5cf255x2Qf8AIAAAAAAAJGhw+fqKxP0142BYbL0vl4/NvHrty9oWDERuZAAAAAAAAAAAAAABrelb1mto3xPOHP6vBbT5prP086z7OiQtqYPN082rHqpxj46gpAAAAAAFvsbD4cNssxG+88PhUS6PTU8vBSvaoPUAAAAAAAAAAAAAAABi0b45MgOb1GPyc+TH+MvNP2xTw563/KEAAAAAHpp6+PPjr3tDo4UOza+LWY/bfK+BkAAAAAAAAAAAAAAAAkAV+2Kb8Fb/AI2U6+2nXxaLJ7cVCAAD/9k="
+                        alt="">
+                    {% endif %}
+
+                </div>
+            </a>
+
+            {% else %}
+            <a href="/user/login">
+                <h2 style="color: orangered;">Đăng nhập tại đây</h2>
+            </a>
+            {% endif %}
+            <a class="nav-item" href="#">
+                <h3>
+                    Home
+                </h3>
+            </a>
+            <a class="nav-item" href="#">
+                <h3>
+                    See all
+                </h3>
+            </a>
+            <a class="nav-item" href="#">
+                <h3>
+                    About us
+                </h3>
+            </a>
+            <a class="nav-item" href="#">
+                <h3>
+                    Contact us
+                </h3>
+            </a>
+
+        </span>
+
+    </header>
+    <div style="" class="root">
+
+        <span>
+            <div class="content">
+
+                <h1><!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. -->
+                    {{ event.title }}
+
+                </h1>
+                <p class="descirbe">
+                    <!-- remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                    PageMaker
+                    including versions of Lorem Ipsum. -->
+                    {{ event.describe }}
+                </p>
+                <span>
+                    <div class="day">
+                        <span>{{event.start_time.day}}</span>
+                        <span>{{event.start_time.month}}</span>
+                    </div>
+                    <span class="info">
+                        <span class="address"><span><i class="fa-solid fa-location-dot"></i></span> <span>
+                                {{events.0.locate}}
+
+                            </span></span>
+                        <span class="max-people"><span><i class="fa-solid fa-user"></i></span>
+                            <span>255</span>
+                        </span>
+                    </span>
+
+                </span>
+                <span>
+                    <a class="btn book" href="#">Book now</a>
+                    <a href="{{event.instagram_link}}"><span class="logo-social"><i
+                                style="font-weight: bold; color: red;" class="fa-brands fa-instagram"></i></span></a>
+                    <span class="logo-social"><i tyle="font-weight: bold; color: blue;"
+                            class="fa-brands fa-facebook"></i></span>
+                    <span class="logo-social"><i tyle="font-weight: bold; color: orange;"
+                            class="fa-solid fa-phone"></i></span>
+                    <span class="logo-social"><i class="fa-solid fa-envelope"></i></span>
+                </span>
+
+            </div>
+
+            <div class="video">
+                <video style="filter: brightness(0.5);" autoplay loop muted playsinline>
+                    <source
+                        src="/media/video/THE GREATEST FINAL EVER_! _ Argentina v France _ FIFA World Cup Qatar 2022 Highlights.mp4"
+                        type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+
+            </div>
+        </span>
+        <div class="button-skip">
+            {% if page > 1 %}
+            <a href="{% url 'home' page|add:'-1' %}">
+                <button><i class="fa-solid fa-arrow-left"></i></button>
+            </a>
+        {% endif %}
+        <a href="{% url 'home' page|add:'1' %}">
+            <button><i class="fa-solid fa-arrow-right"></i></button>
+        </a>
+        
+        </div>
+        <div style="height: 5rem;"></div>
+        <span class="img-content">
+            <div class="parent">
+
+
+            </div>
+            <div class="second-content">
+                <p>{{event.describe_one}}</p>
+            </div>
+        </span>
+        <span class="img-content">
+            <div class="second-content">
+                <p>{{event.describe_two}}</p>
+            </div>
+            <div class="parent">
+
+                <!-- <img src=""
+                alt="Image 1">
+            <img src=""
+                alt="Image 2">
+            <img src=""
+                alt="Image 3"> -->
+                {% for img in boxs_images %}
+                <img src="{{img.img.url}}" alt="">
+                
+                {% endfor %}
+            </div>
+
+        </span>
+        <div style="height: 12rem;"></div>
+    </div>
+
+</body>
+
+</html>

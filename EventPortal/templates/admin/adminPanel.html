@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    * {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 12px 34px;
+        background-color: blue;
+        border-radius: 6px;
+
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    nav {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border-bottom: 1px solid black;
+    }
+
+    .btn:hover {
+        transition: 200ms ease-in;
+        transform: scale(1.05);
+    }
+
+    .type {
+        padding: 6px 12px;
+        background-color: white;
+    }
+
+    main {
+
+        flex-grow: 1;
+        margin-left: 120px;
+        margin-right: 120px;
+        background-color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .card {
+        padding: 12px 52px;
+        border-bottom: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+
+<body>
+    <nav>
+        <a href="/event/create/">
+            <div style="background-color: #FF5733;" class="btn">
+                Thêm mới event
+            </div>
+        </a>
+        <a href="">
+            <div style="background-color: #3498DB;" class="btn">
+                Danh sách sự kiện
+            </div>
+        </a>
+        <a href="">
+            <div style="background-color: #27AE60;" class="btn">
+                Lịch sử giao dịch
+            </div>
+        </a>
+        <a href="">
+            <div style="background-color: #F1C40F;" class="btn">
+                Báo cáo
+            </div>
+        </a>
+        <a href="">
+            <div style="background-color: #9B59B6;" class="btn">
+                Tìm Kiếm
+            </div>
+        </a>
+
+    </nav>
+    <main>
+        <div class="filler">
+            <form method="get">
+                <select class="type" name="event_category">
+                    <option value="MUSIC">Music</option>
+                    <option value="SPORTS">Sports</option>
+                    <option value="EDUCATION">Education</option>
+                    <option value="TECHNOLOGY">Technology</option>
+                    <option value="ART">Art</option>
+                    <option value="THEATER">Theater</option>
+                    <option value="FOOD">Food</option>
+                    <option value="FITNESS">Fitness</option>
+                    <option value="TRAVEL">Travel</option>
+                    <option value="FASHION">Fashion</option>
+                    <option value="BUSINESS">Business</option>
+                    <option value="HEALTH">Health</option>
+                    <option value="LITERATURE">Literature</option>
+                    <option value="SCIENCE">Science</option>
+                    <option value="HISTORY">History</option>
+                </select>
+                <button type="submit">
+                    <i class="fa-solid fa-filter"></i>
+                </button>
+            </form>
+        </div>
+        <div class="all-event">
+            {% for event in events %}
+            <div class="card">
+                <span>
+                    <h1>{{event.title}}</h1>
+                    <h6><span style="color: gray;" >Ngày tạo : </span> {{event.create_at}}</h6>
+                </span>
+                <a href=""><div class="manager">Chỉnh sửa</div></a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </main>
+</body>
+
+</html>
