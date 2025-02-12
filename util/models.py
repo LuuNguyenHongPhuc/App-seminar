@@ -1,8 +1,12 @@
+import base64
+from io import BytesIO
 from django.db import models
 
 
 
 import uuid
+import qrcode
+
 
 
 class UserAction(models.Model):
@@ -11,3 +15,50 @@ class UserAction(models.Model):
     title =models.CharField(max_length=256,null=True)
     describe =models.CharField(max_length=256,null=True)
     time =models.DateTimeField(null=True)
+
+
+class QrCheckObject(models.Manager):
+    def add(self, user_id, event_id):
+        if not self.filter(user_id=user_id, event_id=event_id).exists():
+            qr = self.create(event_id=event_id, user_id=user_id)
+            return createQrcode(user_id=user_id,event_id=event_id)
+        return None
+
+    def checkQr(self, user_id, event_id):
+        qr = self.filter(user_id=user_id, event_id=event_id)
+        if qr.exists():
+            qr.delete()
+            return True
+        return False
+
+class QrCheckEvent(models.Model):
+    id =models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True)
+    event_id =models.UUIDField(default="")
+    user_id =models.UUIDField(default="")
+    objects =QrCheckObject()
+    
+
+
+def createQrcode(user_id, event_id):
+    
+    qr_data = f"user_id:{user_id}, event_id:{event_id},mess:ve tham gia su kien "
+
+
+    qr = qrcode.QRCode(
+        version=1,  
+        error_correction=qrcode.constants.ERROR_CORRECT_L, 
+        box_size=10,  
+        border=4  
+    )
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+
+    
+    qr_image = qr.make_image(fill="black", back_color="white")
+
+
+    buffer = BytesIO()
+    qr_image.save(buffer, format="PNG")
+    qr_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+    return qr_base64 

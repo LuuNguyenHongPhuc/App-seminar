@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render,redirect
+from django.urls import reverse
 from django.views import View
 from datetime import datetime
 from EventTicket.util import getContextUser,create_new_action
@@ -67,6 +68,8 @@ class LoginView(View):
                 login(request, user)
                 messages.success(request, "Đăng nhập thành công!")
                 # return redirect("home")  
+                return redirect(reverse("home", args=[0])) 
+
             else:
                 messages.error(request, "Email hoặc mật khẩu không chính xác.")
 

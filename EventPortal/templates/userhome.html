@@ -588,7 +588,8 @@
             <h4 id="username">
                 <section style="color: azure;">Hi!</section>
                 <!-- KhoaDonguyen -->
-                {{ user.email }}
+              {% if    user.email  %}
+                {% endif %}
             </h4>
             {% if user %}
             <a href="/user/info">

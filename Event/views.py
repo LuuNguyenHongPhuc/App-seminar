@@ -1,9 +1,11 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.views import View
 
 from Event.forms import EventCreatorForm, Images
 from Event.models import BoxImage, EventModel
 from EventTicket.util import getContextUser
+from util.models import QrCheckEvent
 
 
 
@@ -41,6 +43,25 @@ class EventInfo(View):
         context["event"]=event
         context["boxs_images"]=boxs_images
         return render(template_name="eventInfo.html",request=request,context=context)
+    # dang ky event
+    def post(self,request,id):
+        
+        event =EventModel.objects.filter(id=id).first()
+        event_id =event.id
+        user =getContextUser(request=request)
+        user_id =user.id
+        sign_event =QrCheckEvent.objects.add(user_id=user_id,event_id=event_id)
+        print("trạng thái đăng ký sự kiện có tên là"+event.title)
+        print(sign_event)
+        
+        boxs_images =BoxImage.objects.filter(id_event=event_id).all()
+        context ={
+                "event":event,
+                "email":          user.email ,
+                "time":datetime.now() ,
+                "qr_code":sign_event
+        }
+        return render(template_name="ticket.html",request=request,context=context)
          
 
 

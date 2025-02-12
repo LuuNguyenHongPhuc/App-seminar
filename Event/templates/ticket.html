@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ticket">
+        <h2 class="event-name">{{event.title}}</h2>
+        <p class="event-date">{{time}}</p>
+        <p class="attendee-name">🎟️{{email}}</p>
+
+        <div class="qr-container">
+            <img id="qr-image" src="data:image/png;base64,{{qr_code}}" alt="QR Code">
+        </div>
+
+        
+        <button class="download-btn" >📥tải xuống vé</button>
+    </div>
+
+    <script>
+      
+    </script>
+</body>
+</html>

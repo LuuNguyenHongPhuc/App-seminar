@@ -6,10 +6,9 @@ from util.models import UserAction
 def getContextUser(request):
     user =request.user
     if user:
-        print("trang thai dang dang nhap")
-        print("nguoi dung hien tai la"+user.email)
+        
         return user
-    print("chua co nguoi dung dang nhap ")
+    
     return None
 
 

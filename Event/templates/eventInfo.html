@@ -153,12 +153,19 @@
 
                 </div>
                 <div class="order-bar">
-
-                    <a href="">
-                        <div class="order-btn">
+                   
+            
+                    <!-- <a href="">
+                        <div >
                             Đặt vé ngay
                         </div>
-                    </a>
+                    </a> -->
+                    <form method="post"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                 
+              
+                        <button class="order-btn"  type="submit">Đặt vé ngay</button>
+                      </form>
                     <div class="price">
                         <h3>Giá vé : {% if event.price|floatformat:"0" == "0" %}
                             Free

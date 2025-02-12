@@ -6,6 +6,14 @@
     <title>All event</title>
 </head>
 <body>
-    
+    {% for event in events %}
+        <div class="card">
+            <div class="img">
+                <img src="{{event.thumb.url}}" alt="">
+            </div>
+            <h1>{{event.title}}</h1>
+            
+        </div>
+    {% endfor %}
 </body>
 </html>

@@ -7,7 +7,8 @@ from EventTicket.util import getContextUser
 
 class UserHome(View):
 
-    def get(self,request, page):
+    def get(self,request, page=0):
+        print(page)
         events = EventModel.objects.get_recent_events_limited(limit=10)
         event =events[page]
         boxs_images =[]
