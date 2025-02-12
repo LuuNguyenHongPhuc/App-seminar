@@ -20,7 +20,8 @@ class UserHome(View):
         context ={
             "user":user,
             "event":event,
-            "boxs_images":boxs_images
+            "boxs_images":boxs_images,
+            "events":events
             
         }
         return render(template_name="userhome.html",request=request,context=context)
@@ -35,8 +36,8 @@ class ListEvent(View):
 class AdminPanel(View):
     def get(self,request,):
         user =getContextUser(request=request)
-        type_selected = request.GET.get("event_category")  # Lấy giá trị từ URL
-        print(type_selected)  # Debug để kiểm tra
+        type_selected = request.GET.get("event_category")  
+        print(type_selected)  
 
         events = EventModel.objects.filter(type__iexact=str(type_selected))
 

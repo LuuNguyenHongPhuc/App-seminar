@@ -134,7 +134,7 @@
                     <h1>{{event.title}}</h1>
                     <h6><span style="color: gray;" >Ngày tạo : </span> {{event.create_at}}</h6>
                 </span>
-                <a href=""><div class="manager">Chỉnh sửa</div></a>
+                <a href="{% url 'manager'  event.id|stringformat:"s" %}"><div class="manager">Chỉnh sửa</div></a>
             </div>
             {% endfor %}
 

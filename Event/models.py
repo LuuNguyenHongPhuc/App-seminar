@@ -52,6 +52,7 @@ class Categories(models.Choices):
     LITERATURE = "Literature"
     SCIENCE = "Science"
     HISTORY = "History"
+    GAME ="Game"
 
 class EventModel(models.Model):
     id =models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True)

@@ -30,13 +30,39 @@ class EventCreatorView(View):
             for image in images:
                 new_image =BoxImage.objects.create(id_event=event.id,img=image)
             return  render(template_name="eventcreator.html",request=request,context={"form":form,"form_images":form_images})
-
+        else:
+            print(form.errors)
 class EventInfo(View):
     def get(self,request,id):
         context ={}
         event =EventModel.objects.filter(id=id).first()
-        
+        event_id =event.id
+        boxs_images =BoxImage.objects.filter(id_event=event_id).all()
         context["event"]=event
+        context["boxs_images"]=boxs_images
         return render(template_name="eventInfo.html",request=request,context=context)
          
+
+
+class EventFix(View):
+    def get(self,request,id):
+        event =EventModel.objects.filter(id=id).first()
+        form =EventCreatorForm(instance=event)
+        event_id =event.id
         
+        context ={
+            "form":form
+        }
+        
+        return render(template_name="eventfix.html",request=request,context=context)
+    def post(self,request,id):
+        event =EventModel.objects.filter(id=id).first()
+        form = EventCreatorForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            context ={
+            
+            "form":form
+        }
+        
+        return render(template_name="eventfix.html",request=request,context=context)
