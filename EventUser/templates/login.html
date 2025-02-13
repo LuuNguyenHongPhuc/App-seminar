@@ -127,13 +127,14 @@
 
 <body>
     <form method="post">
-
+        <h1>Đăng nhập tại đây</h1>
         {% csrf_token %}
         {{ form.as_p }}
 
         <button class="sign-up" type="submit">Dang nhap</button>
+        <h4>if you not have account please click <a href="/user/register">here</a></h4>
     </form>
-    <h4>if you not have account please click <a href="/user/register">here</a></h4>
+   
 
 
     {% if messages %}
