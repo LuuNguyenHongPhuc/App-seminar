@@ -9,71 +9,148 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        * {
-            font-weight: 400;
-            font-size: 16px;
-            margin: 2px;
-        }
+         /* Reset cơ bản */
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
-        body {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    background-color: #e3f2fd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        .root {
+.root {
+    width: 90%;
+    max-width: 1200px;
+}
 
-            background-color: aliceblue;
-            width: 100%;
+/* Header */
+.head {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.head:hover {
+    transform: translateY(-5px);
+}
 
-        .head {
-            width: 70%;
-            height: 120px;
-            padding: 24px;
-            background-color: white;
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+.avt img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #2196f3;
+    transition: transform 0.3s;
+}
 
-        }
+.avt img:hover {
+    transform: scale(1.1);
+}
 
-        .avt {
-            width: 95px;
-            height: 95px;
+.fix-button {
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
 
-        }
+.fix-button:hover {
+    background-color: #1565c0;
+}
 
-        .avt img {
-            width: 100%;
-            height: 100%;
-        }
+/* Thông tin người dùng */
+.body {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
 
-        .head>span {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
+.info, .account-info {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
 
-        .head>span>span * {
-            display: block;
-            margin: 6px;
+.info:hover, .account-info:hover {
+    transform: translateY(-5px);
+}
 
-        }
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+}
 
-        .fix-button {
-            padding: 4px 16px;
-            background-color: blue;
-            color: white;
-            border-radius: 12px;
-            font-size: 12px;
-        }
+h2 {
+    color: #333;
+    font-size: 18px;
+}
+
+/* Hoạt động gần đây */
+.recent-active {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.recent-active:hover {
+    transform: translateY(-5px);
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    transition: background 0.3s;
+}
+
+.card:hover {
+    background: #f1f1f1;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.root, .head, .body, .recent-active {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+        
 
         .fix-button:hover {
             border: 1px solid blue;
@@ -205,7 +282,7 @@
                 </a>
                 {% if is_admin %}
                 <a href="{% url 'creator' %}">
-                    <div style="color: white; padding: 4px 12px; background-color: orangered;" class="">
+                    <div style="color: white; padding: 4px 12px; background-color: #2196f3;" class="">
                         <h2>Chuyển sang admin Panel</h2>
                     </div>
                 </a>
