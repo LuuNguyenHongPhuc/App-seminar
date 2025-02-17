@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Ticket</title>
-    <link rel="stylesheet" href="styles.css">
+   
 </head>
 <body>
     <div class="ticket">
@@ -13,7 +13,8 @@
         <p class="attendee-name">🎟️{{email}}</p>
 
         <div class="qr-container">
-            <img id="qr-image" src="data:image/png;base64,{{qr_code}}" alt="QR Code">
+            <img id="qr-image" src="{{qr_code.qr_img.url}}" alt="QR Code">
+           
         </div>
 
         

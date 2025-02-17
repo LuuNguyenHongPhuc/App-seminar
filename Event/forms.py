@@ -54,8 +54,8 @@ class MultipleFileField(forms.FileField):
         return result
 ##
 class Images(forms.ModelForm):
-    images = MultipleFileField(label='chọn tối thiếu 10 ảnh', required=False)
+    images = MultipleFileField(label='chọn tối thiếu 10 ảnh', required=False,widget=MultipleFileInput(attrs={'multiple': 'multiple'}))
     class Meta:
         model = BoxImage
-        fields = ["images"]
+        fields = []
     

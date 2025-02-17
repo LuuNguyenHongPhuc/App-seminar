@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib.auth.models import AnonymousUser
 from Event.models import BoxImage, Categories, EventModel
 from EventTicket.util import getContextUser
+from util.models import QrCheckEvent
 
 
 class UserHome(View):
@@ -50,6 +51,20 @@ class AdminPanel(View):
         return render(template_name= "error_template/403.html",request=request,context={})
 
 
-# class ListUserRegisterEvent(View):
-#     def get(self,request,id):
-#         # users =
+class MyTicket(View):
+    def get(self,request):
+        user = getContextUser(request=request)
+        user_id = user.id
+        qrs = QrCheckEvent.objects.filter(user_id=user_id)
+        events = []
+        for qr in qrs:
+
+            event = EventModel.objects.filter(id=qr.event_id).first()
+            if event:
+
+                events.append(event)
+
+        render_events =zip(events,qrs)
+        return render( template_name= "myticket.html",request=request,context={
+            "render_events":render_events
+        })

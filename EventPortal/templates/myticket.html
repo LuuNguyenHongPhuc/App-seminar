@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vé của tôi</title>
+    <style>
+        .root{
+            width: 100%;
+       
+        }
+
+        .card{
+            width: 100%;
+            height: 230px;
+            background-color: teal;
+        }
+        .thumb{
+        width:32%,
+        height:230px,
+
+        }
+       .qr-code{
+       width:120px,
+       height:120px
+       }
+
+        .qr-code >img{
+        height:100%,
+        width:100%
+        }
+    </style>
+</head>
+
+<body>
+    <header><a href="{% url 'home' 0 %}">
+            <h4>Home</h4>
+        </a></header>
+    <h1>Vé của tôi</h1>
+    <div class="root">
+   {% for event, qr in render_events %}
+    <div class="card">
+        <div class="thumb"><img src="{{ event.thumb }}" alt=""></div>
+        <h3>{{ event.title }}</h3>
+        <div class="qr-code"><img src="{{qr.qr_img.url}}" alt=""></div>
+
+    </div>
+{% endfor %}
+
+
+    </div>
+</body>
+
+</html>

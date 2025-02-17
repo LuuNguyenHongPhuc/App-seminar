@@ -50,9 +50,13 @@ class EventInfo(View):
         event_id =event.id
         user =getContextUser(request=request)
         user_id =user.id
-        sign_event =QrCheckEvent.objects.add(user_id=user_id,event_id=event_id)
-        print("trạng thái đăng ký sự kiện có tên là"+event.title)
-        print(sign_event)
+        print(event_id)
+        print(user_id)
+        
+        sign_event = QrCheckEvent.objects.add(user_id=user_id, event_id=event_id)
+        print("trạng thái đăng ký sự kiện có tên là " + event.title)
+        print(sign_event.qr_img.url)
+
         
         boxs_images =BoxImage.objects.filter(id_event=event_id).all()
         
