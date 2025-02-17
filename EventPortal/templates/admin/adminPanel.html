@@ -80,21 +80,9 @@
                 Thêm mới event
             </div>
         </a>
-        <a href="">
-            <div style="background-color: #3498DB;" class="btn">
-                Danh sách sự kiện
-            </div>
-        </a>
-        <a href="">
-            <div style="background-color: #27AE60;" class="btn">
-                Lịch sử giao dịch
-            </div>
-        </a>
-        <a href="">
-            <div style="background-color: #F1C40F;" class="btn">
-                Báo cáo
-            </div>
-        </a>
+
+
+
         <a href="">
             <div style="background-color: #9B59B6;" class="btn">
                 Tìm Kiếm
@@ -106,6 +94,7 @@
         <div class="filler">
             <form method="get">
                 <select class="type" name="event_category">
+                    <option value="ALL">All</option>
                     <option value="MUSIC">Music</option>
                     <option value="SPORTS">Sports</option>
                     <option value="EDUCATION">Education</option>
@@ -128,15 +117,27 @@
             </form>
         </div>
         <div class="all-event">
+            {% if events %}
             {% for event in events %}
             <div class="card">
                 <span>
                     <h1>{{event.title}}</h1>
-                    <h6><span style="color: gray;" >Ngày tạo : </span> {{event.create_at}}</h6>
+                    <h6><span style="color: gray;">Ngày tạo : </span> {{event.create_at}}</h6>
                 </span>
-                <a href="{% url 'manager'  event.id|stringformat:"s" %}"><div class="manager">Chỉnh sửa</div></a>
+               <a href="{% url 'delete' event.id %}">
+    <div class="manager">Xóa</div>
+</a>
+
+<a href="{% url 'manager' event.id %}">
+    <div class="manager">Chỉnh sửa</div>
+</a>
+
             </div>
             {% endfor %}
+            {% else %}
+
+            <h2 style="font-size: 24px;">Chưa có event nào</h2>
+            {% endif %}
 
         </div>
     </main>

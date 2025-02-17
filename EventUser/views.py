@@ -68,7 +68,10 @@ class LoginView(View):
                 login(request, user)
                 messages.success(request, "Đăng nhập thành công!")
                 # return redirect("home")  
-                return redirect(reverse("home", args=[0])) 
+                if user.is_superuser:
+                    return redirect(reverse("adminpanel"))
+                else:
+                    return redirect(reverse("home", args=[0])) 
 
             else:
                 messages.error(request, "Email hoặc mật khẩu không chính xác.")

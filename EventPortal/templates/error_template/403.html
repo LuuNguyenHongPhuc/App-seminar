@@ -14,6 +14,8 @@
             height: 100vh;
             margin: 0;
             color: #333;
+            flex-direction: column;
+            gap: 24px;
         }
         .container {
             text-align: center;
@@ -39,5 +41,6 @@
         <h1>403</h1>
         <p>Forbidden - User không có quyền truy cập</p>
     </div>
+    <h3>Xin đăng nhập tài khoản admin ở đây <a href="{% url 'login' %}">here</a></h3>
 </body>
 </html>

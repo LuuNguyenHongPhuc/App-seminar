@@ -166,7 +166,10 @@
 
 <body>
 
-    {% include 'header.html' %}
+ <header>
+    <a href="{% url 'home'  0 %}"><h2>Về Trang chủ</h2></a>
+
+ </header>
 
     <div class="root">
         <div style="height: 20px;"></div>
@@ -204,7 +207,7 @@
                     </div>
                 </a>
                 {% if is_admin %}
-                <a href="{% url 'creator' %}">
+                <a href="{% url 'adminpanel' %}">
                     <div style="color: white; padding: 4px 12px; background-color: orangered;" class="">
                         <h2>Chuyển sang admin Panel</h2>
                     </div>

@@ -163,25 +163,16 @@
                     <form method="post"  enctype="multipart/form-data">
                         {% csrf_token %}
                  
-              
-                        <button class="order-btn"  type="submit">Đặt vé ngay</button>
+          {% if user.email %}
+                            
+          <button class="order-btn"  type="submit">Đặt vé ngay</button>
+          {% else %}
+          <h3>Yêu cầu đăng nhập để đặt vé</h3>
+          {% endif %}
                       </form>
-                    <div class="price">
-                        <h3>Giá vé : {% if event.price|floatformat:"0" == "0" %}
-                            Free
-                            {% else %}
-                            ${{ event.price }}
-                            {% endif %}</h3>
-                    </div>
+                  
                 </div>
-                <span class="foot">
-                    <div class="momo">
-                        <img src="data:image/png;base64,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"
-                            alt="">
-                       
-                    </div>
-                    <p>Hỗ trợ thanh toán qua momo</p>
-                </span>
+               
             </div>
 
         </div>

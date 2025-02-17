@@ -39,14 +39,17 @@ class AdminPanel(View):
         user =getContextUser(request=request)
         type_selected = request.GET.get("event_category")  
         print(type_selected)  
-
-        events = EventModel.objects.filter(type__iexact=str(type_selected))
-
-        
-
+        if type_selected =="ALL":
+            events =EventModel.objects.all()
+        else :
+            events = EventModel.objects.filter(type__iexact=str(type_selected))
         for event in events:
             print(event.title)
         if user.is_superuser:
             return render(template_name= "admin/adminPanel.html",request=request,context={"events":events})
         return render(template_name= "error_template/403.html",request=request,context={})
-        
+
+
+# class ListUserRegisterEvent(View):
+#     def get(self,request,id):
+#         # users =

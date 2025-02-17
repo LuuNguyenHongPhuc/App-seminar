@@ -55,6 +55,7 @@ class EventInfo(View):
         print(sign_event)
         
         boxs_images =BoxImage.objects.filter(id_event=event_id).all()
+        
         context ={
                 "event":event,
                 "email":          user.email ,
@@ -87,3 +88,14 @@ class EventFix(View):
         }
         
         return render(template_name="eventfix.html",request=request,context=context)
+
+class DeleteEvent(View):
+    def get(self,request,id):
+        event =EventModel.objects.filter(id=id).first()
+        if event:
+            event.delete()
+            return  render(request=request,template_name="/message/success.html",context={"msg":"xoa event "+event.title+" thanh cong"})
+        return render(request=request, template_name="message/success.html",
+                      context={"msg": "khong xoa duoc event"})
+
+

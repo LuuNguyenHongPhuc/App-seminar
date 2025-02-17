@@ -4,11 +4,11 @@
 <head>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <meta charset="UTF-8">
     <title>Homepage</title>
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/25/25694.png" type="image/x-icon" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/25/25694.png" type="image/x-icon"/>
     <meta name="theme-color" content="#FF5733">
 
     <style>
@@ -577,18 +577,19 @@
             border: 2px solid #79D7BE;
             filter: brightness(1);
         }
-       
+
     </style>
 </head>
 
 <body style="background-image:linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.29)), url('{{event.thumb.url}}');">
-    <header>
-        <h2 class="logo">Event Ticket</h2>
-        <span>
+<header>
+    <h2 class="logo">Event Ticket</h2>
+    <span>
             <h4 id="username">
                 <section style="color: azure;">Hi!</section>
                 <!-- KhoaDonguyen -->
               {% if    user.email  %}
+              {{user.email}}
                 {% endif %}
             </h4>
             {% if user %}
@@ -600,7 +601,7 @@
 
                     {% else %}
                     <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAgYDB//EAC0QAQACAQEGBQQBBQAAAAAAAAABAgMEBREhMUFREhMiYXEyM1KBI2JykaHR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APpIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABybY8d8uSKY6za09FvpNnUxxFs3rv2nlAKzDpc+f7ePh3nhCVj2Tln7mStfjit4jdyjcyCtjZNI55bT+oa22R+Oef3VaAKPLs3UY+MRF4/pnihzWazMWiYntLqHjn0+PPXdkr++oOdEvWaG+n9UTN8ffrVE59wAAAAAAAAAAAAAAG2Olsl4pTjaZ5NVvsrTRTH51o9d44e0Ak6PS102PdHG087dZSCOQAAAAAADFo3xu3cJ5qbaOjnDPjxR/HM8Y7LprkpGSk1tG+JBzI9dThnBntjnpyn2eQAAAAAAAAAAAAPTBj83NTH0tLo6xERERyhTbIp4tTNvxqugAAAAAAAAAAVu2MW+lcu7jWd0/CpdDrKePS5a+29zwAAAAAAAAAAAALLYv1ZfiFsqNjW/lyV71W4AAAAAAAAAANMv27/2y5p0eot4cGS3asucAAAAAAAAAAAABI0GXytVSZ5W4S6By+/sv9Dn8/T1mfqjhb5BJAAAAAAAAABC2rl8vTTXredykS9p5/O1ExH009MfPVEAAAAAAAAAAAAASNFqbabLFudJ+qEcB01LVvSLUmJrPKWyh0esnTT4Z32xzPGO3wu8WWmakWx2i0A3AAAAAAQNpayMVJx4pick8J9jW6+uKJphmLX79IU97WtO+0zNp5zIMAAAAAAAAAAAAAADNa2vaK0iZtPKIW+j2bXHuvn9V/x6QCDpdDk1HGY8NO8xx/S30+lx6au7FHGec9ZezIAAAADExvZAVup2ZW3qwT4bfjPKVXkx3xW8OSsxPu6Z5Z9Pjz0mmSsT79gc5PASdXosmnnf9VOk/wDUboAAAAAAAAAAA3w475rxTHG+0/6Yx1te8UpG+1uEQvdHpa6fHu53n6rdwNJo8enrwiJvMcbJIAAAAAAAAAAAxasWiYtETE9FPrtB5Uzkwx6J5x2XLExviY7g5jh0E7aWjnBM5cf255x2Qf8AIAAAAAAAJGhw+fqKxP0142BYbL0vl4/NvHrty9oWDERuZAAAAAAAAAAAAAABrelb1mto3xPOHP6vBbT5prP086z7OiQtqYPN082rHqpxj46gpAAAAAAFvsbD4cNssxG+88PhUS6PTU8vBSvaoPUAAAAAAAAAAAAAAABi0b45MgOb1GPyc+TH+MvNP2xTw563/KEAAAAAHpp6+PPjr3tDo4UOza+LWY/bfK+BkAAAAAAAAAAAAAAAAkAV+2Kb8Fb/AI2U6+2nXxaLJ7cVCAAD/9k="
-                        alt="">
+                         alt="">
                     {% endif %}
 
                 </div>
@@ -634,8 +635,8 @@
 
         </span>
 
-    </header>
-    <div style="" class="root">
+</header>
+<div style="" class="root">
 
         <span>
             <div class="content">
@@ -658,12 +659,10 @@
                     </div>
                     <span class="info">
                         <span class="address"><span><i class="fa-solid fa-location-dot"></i></span> <span>
-                                {{events.0.locate}}
+                                {{event.address}}
 
                             </span></span>
-                        <span class="max-people"><span><i class="fa-solid fa-user"></i></span>
-                            <span>255</span>
-                        </span>
+
                     </span>
 
                 </span>
@@ -698,24 +697,23 @@
             </div>
         </span>
 
-      
-        <div class="button-skip">
-            {% for e in events %}
-            <a href="{% url 'home' forloop.counter0 %}">
 
-                <div class="event-card {% if e.id == event.id %}choice{% endif %}">
-                    <img src="{{ e.thumb.url }}" alt="">
-                </div>
-            </a>
+    <div class="button-skip">
+        {% for e in events %}
+        <a href="{% url 'home' forloop.counter0 %}">
+
+            <div class="event-card {% if e.id == event.id %}choice{% endif %}">
+                <img src="{{ e.thumb.url }}" alt="">
+            </div>
+        </a>
         {% endfor %}
-        
-
-        </div>
-     
 
 
-        <div style="height: 5rem;"></div>
-        <span class="img-content">
+    </div>
+
+
+    <div style="height: 5rem;"></div>
+    <span class="img-content">
             <div class="parent">
 
 
@@ -724,7 +722,7 @@
                 <p>{{event.describe_one}}</p>
             </div>
         </span>
-        <span class="img-content">
+    <span class="img-content">
             <div class="second-content">
                 <p>{{event.describe_two}}</p>
             </div>
@@ -743,8 +741,8 @@
             </div>
 
         </span>
-        <div style="height: 12rem;"></div>
-    </div>
+    <div style="height: 12rem;"></div>
+</div>
 
 </body>
 <script>

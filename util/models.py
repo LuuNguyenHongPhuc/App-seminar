@@ -21,13 +21,17 @@ class QrCheckObject(models.Manager):
     def add(self, user_id, event_id):
         if not self.filter(user_id=user_id, event_id=event_id).exists():
             qr = self.create(event_id=event_id, user_id=user_id)
-            return createQrcode(user_id=user_id,event_id=event_id)
+            qr_code =createQrcode(user_id=user_id,event_id=event_id)
+            qr.qr_img =qr_code
+            qr.save()
+            return  qr_code
         return None
 
     def checkQr(self, user_id, event_id):
         qr = self.filter(user_id=user_id, event_id=event_id)
         if qr.exists():
-            qr.delete()
+            self.da_tham_gia =True
+            self.save()
             return True
         return False
 
@@ -35,6 +39,8 @@ class QrCheckEvent(models.Model):
     id =models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True)
     event_id =models.UUIDField(default="")
     user_id =models.UUIDField(default="")
+    qr_img =models.ImageField(upload_to="qr-code",null=True)
+    da_tham_gia =models.BooleanField(default=False)
     objects =QrCheckObject()
     
 

@@ -66,12 +66,12 @@ class EventModel(models.Model):
     map_ifram =models.CharField(max_length=266,null=True)
     video =models.FileField(upload_to="video/",null=True)
     author =models.CharField(max_length=266)
-    price =models.IntegerField(default=0)
-    locate =models.CharField(max_length=266)
-    address =models.CharField(max_length=266)
+   
+    
+    address =models.CharField(max_length=266,blank=True)
     qr_code =models.ImageField(upload_to="qr-code/")
-    facebook_link =models.CharField(max_length=266)
-    instagram_link =models.CharField(max_length=266)
+    facebook_link =models.CharField(max_length=266,blank=True)
+    instagram_link =models.CharField(max_length=266,blank=True)
     phone =models.CharField(max_length=266)
     max_join =models.IntegerField(default=0)
     current_join =models.IntegerField(default=0)

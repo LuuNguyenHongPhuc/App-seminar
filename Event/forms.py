@@ -6,7 +6,7 @@ class EventCreatorForm(forms.ModelForm):
         model = EventModel
         fields = [
            "title", "describe", "type", "start_time", "end_time", "thumb",
-    "price", "map_ifram", "locate", "address", "facebook_link",
+ "map_ifram", "address", "facebook_link",
     "instagram_link", "phone",
     "describe_one",
     "describe_two",
@@ -20,9 +20,9 @@ class EventCreatorForm(forms.ModelForm):
             # "start_time": forms.SelectDateWidget(attrs={"class": "date-input"}),
             # "end_time": forms.SelectDateWidget(attrs={"class": "date-input"}),
             "thumb": forms.ClearableFileInput(attrs={"class": "thumb-label",}),
-            "price": forms.NumberInput(attrs={"class": "price-label", "placeholder": "Nhập giá vé"}),
+           
             "map_ifram": forms.TextInput(attrs={"class": "map-label", "placeholder": "Nhúng bản đồ Google Maps"}),
-            "locate": forms.TextInput(attrs={"class": "locate-label", "placeholder": "Nhập địa điểm"}),
+           
             "address": forms.TextInput(attrs={"class": "address-label", "placeholder": "Nhập địa chỉ cụ thể"}),
             "facebook_link": forms.URLInput(attrs={"class": "facebook-label", "placeholder": "Nhập link Facebook"}),
             "instagram_link": forms.URLInput(attrs={"class": "instagram-label", "placeholder": "Nhập link Instagram"}),

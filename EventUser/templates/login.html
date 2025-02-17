@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1E90FF, #00BFFF);
@@ -18,7 +18,7 @@
             position: relative;
         }
 
-
+        
         .bubble {
             position: absolute;
             width: 50px;
@@ -30,20 +30,12 @@
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
         }
 
-
+        
         .login-container {
             background: white;
             padding: 30px;
@@ -57,24 +49,17 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-
+        
         .login-container h2 {
             margin-bottom: 15px;
             color: #333;
         }
 
-
+        
         input {
             width: 100%;
             padding: 10px;
@@ -91,7 +76,7 @@
             box-shadow: 0px 0px 10px rgba(30, 144, 255, 0.5);
         }
 
-
+        
         .sign-up {
             width: 100%;
             background: #1E90FF;
@@ -109,41 +94,45 @@
             transform: scale(1.05);
         }
 
-
+        
         .message {
             color: red;
             font-size: 14px;
             margin-top: 10px;
         }
 
-
+        
         .event-banner {
             width: 100%;
             margin-bottom: 15px;
             border-radius: 8px;
         }
+
     </style>
 </head>
-
 <body>
-    <form method="post">
-        <h1>Đăng nhập tại đây</h1>
-        {% csrf_token %}
-        {{ form.as_p }}
+    
+    <div class="bubble" style="top: 10%; left: 10%; animation-duration: 6s;"></div>
+    <div class="bubble" style="top: 20%; left: 70%; animation-duration: 8s;"></div>
+    <div class="bubble" style="top: 50%; left: 30%; animation-duration: 7s;"></div>
+    <div class="bubble" style="top: 80%; left: 50%; animation-duration: 9s;"></div>
 
-        <button class="sign-up" type="submit">Dang nhap</button>
-        <h4>if you not have account please click <a href="/user/register">here</a></h4>
-    </form>
-   
-
-
-    {% if messages %}
-    {% for message in messages %}
-
-    {{ message }}
-
-    {% endfor %}
-    {% endif %}
+    <div class="login-container">
+        
+        
+        <h2>Đăng nhập</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="sign-up" type="submit">Đăng nhập</button>
+            <h4>if you not have account please click <a href="/user/register">here</a></h4>
+        </form>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
 </body>
-
 </html>
