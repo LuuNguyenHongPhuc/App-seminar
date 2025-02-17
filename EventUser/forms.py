@@ -35,5 +35,5 @@ class LoginForm(forms.Form):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        exclude = ["password", "user_permissions", "groups","last_login"]
+        exclude = ["password", "user_permissions", "groups","last_login","is_superuser","is_active","is_staff"]
          ## them tat ca cac truong trong form ngoai tru các truong nay
