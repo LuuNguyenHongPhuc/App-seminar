@@ -69,11 +69,18 @@
         border-bottom: 1px solid black;
         display: flex;
         align-items: center;
+        gap: 32px;
         justify-content: space-between;
+    }
+
+    .card > .custom{
+        display: flex;
+        gap: 12px;
     }
 </style>
 
 <body>
+    <header><a href="{% url 'home' 0%}"><h1 style="font-size: 24px;">Trang chủ</h1></a></header>
     <nav>
         <a href="/event/create/">
             <div style="background-color: #FF5733;" class="btn">
@@ -124,13 +131,23 @@
                     <h1>{{event.title}}</h1>
                     <h6><span style="color: gray;">Ngày tạo : </span> {{event.create_at}}</h6>
                 </span>
-               <a href="{% url 'delete' event.id %}">
-    <div class="manager">Xóa</div>
-</a>
+                <span class="custom">
 
-<a href="{% url 'manager' event.id %}">
-    <div class="manager">Chỉnh sửa</div>
-</a>
+                    <a href=" {% url 'joins' event.id %} ">
+
+                        <div class="manager">
+                            Xem chi tiết người tham gia
+    
+                        </div>
+                    </a>
+                    <a href="{% url 'delete' event.id %}">
+                        <div class="manager">Xóa</div>
+                    </a>
+    
+                    <a href="{% url 'manager' event.id %}">
+                        <div class="manager">Chỉnh sửa</div>
+                    </a>
+                </span>
 
             </div>
             {% endfor %}

@@ -63,8 +63,23 @@ class MyTicket(View):
             if event:
 
                 events.append(event)
-
+        if len(events)==0:
+            blank =None
+        else:
+            blank =1
+        print(len(events))
         render_events =zip(events,qrs)
         return render( template_name= "myticket.html",request=request,context={
-            "render_events":render_events
+            "render_events":render_events,
+            "blank":blank
         })
+
+class JoinerEvent(View):
+    def get(self,request,id):
+        event =EventModel.objects.filter(id=id).first()
+        user_join =QrCheckEvent.objects.filter(event_id=id)
+        return render(template_name="admin/joiner.html",request=request,context={"users":user_join,"event":event})
+    
+class AboutView(View):
+    def get(self,request):
+        return render(template_name="contact/about_us.html",request=request,context={})

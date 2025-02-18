@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('EventUser.urls')),
      path("", include("EventPortal.urls")),
-    path("event/",include("Event.urls"))
+    path("event/",include("Event.urls")),
+    path("util/",include("util.urls"))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

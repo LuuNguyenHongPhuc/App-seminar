@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 
 from Event.forms import EventCreatorForm, Images
@@ -31,7 +31,8 @@ class EventCreatorView(View):
             images = request.FILES.getlist("images")
             for image in images:
                 new_image =BoxImage.objects.create(id_event=event.id,img=image)
-            return  render(template_name="eventcreator.html",request=request,context={"form":form,"form_images":form_images})
+            # return  render(template_name="eventcreator.html",request=request,context={"form":form,"form_images":form_images})
+            redirect("/adminpanel")
         else:
             print(form.errors)
 class EventInfo(View):
@@ -53,7 +54,7 @@ class EventInfo(View):
         print(event_id)
         print(user_id)
         
-        sign_event = QrCheckEvent.objects.add(user_id=user_id, event_id=event_id)
+        sign_event = QrCheckEvent.objects.add(user_id=user_id, event_id=event_id,email=user.email)
         print("trạng thái đăng ký sự kiện có tên là " + event.title)
         print(sign_event.qr_img.url)
 

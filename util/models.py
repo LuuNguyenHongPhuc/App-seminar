@@ -13,12 +13,13 @@ class UserAction(models.Model):
     time = models.DateTimeField(null=True)
 
 class QrCheckObject(models.Manager):
-    def add(self, user_id, event_id):
+    def add(self, user_id, event_id,email):
         if not self.filter(user_id=user_id, event_id=event_id).exists():
             qr = self.create(event_id=event_id, user_id=user_id)
             # createQrcode trả về tuple (filename, ContentFile)
             filename, qr_file = createQrcode(user_id=user_id, event_id=event_id)
             # Lưu ảnh QR vào trường ImageField
+            qr.email =email
             qr.qr_img.save(filename, qr_file, save=False)
             qr.save()
             return qr
@@ -35,6 +36,7 @@ class QrCheckObject(models.Manager):
 
 class QrCheckEvent(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
+    email =models.CharField(default="",null=True,max_length=266)
     event_id = models.UUIDField(default="")
     user_id = models.UUIDField(default="")
     qr_img = models.ImageField(upload_to="qr-codes/", null=True)  # Trường ImageField để lưu ảnh

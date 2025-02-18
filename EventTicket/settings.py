@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'EventUser',
     'EventPortal',
     'Event',
-    "util"
+    "util",
+    'rest_framework',
 
 ]
 MEDIA_URL = '/media/'  

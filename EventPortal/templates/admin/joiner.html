@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách người tham gia sự kiện {{ event.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            text-align: center;
+        }
+        .root{
+            width: 100%;
+        
+        }
+        h1, h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .checked-in {
+            color: green;
+        }
+
+        .not-checked-in {
+            color: red;
+        }
+
+        .card{
+            height: 65px;
+            width: 100%;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách người đã đăng ký sự kiện {{ event.title }}</h1>
+    <h2>Có {{ users|length }} người đã đăng ký tham gia</h2>
+
+    {% if users %}
+    <ul>
+        {% for user in users %}
+        <li>
+            <span>{{ user.email }}</span>
+            <span class="status {% if user.da_tham_gia %}checked-in{% else %}not-checked-in{% endif %}">
+                {% if user.da_tham_gia %}
+                    Đã check-in
+                {% else %}
+                    Chưa check-in
+                {% endif %}
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

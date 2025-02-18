@@ -12,23 +12,29 @@
         }
 
         .card{
+            display: flex;
+            justify-content: start;
+            gap: 24px;
+            align-items: center;
             width: 100%;
-            height: 230px;
-            background-color: teal;
+            height: 130px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
         .thumb{
-        width:32%,
-        height:230px,
+      
 
         }
        .qr-code{
-       width:120px,
-       height:120px
+       width:120px;
+       height: 120px;
+    
        }
 
         .qr-code >img{
-        height:100%,
-        width:100%
+        height:100%;
+        width: 100%;
+        
         }
     </style>
 </head>
@@ -39,16 +45,24 @@
         </a></header>
     <h1>Vé của tôi</h1>
     <div class="root">
+   {% if blank %}
    {% for event, qr in render_events %}
-    <div class="card">
-        <div class="thumb"><img src="{{ event.thumb }}" alt=""></div>
-        <h3>{{ event.title }}</h3>
-        <div class="qr-code"><img src="{{qr.qr_img.url}}" alt=""></div>
+   <div class="card">
+       <div class="thumb"><img src="{{ event.thumb }}" alt=""></div>
+       <span>
+           <h3>{{ event.title }}</h3>
+           <h5>{{qr.time}}</h5>
+       </span>
 
-    </div>
+       <div class="qr-code"><img src="{{qr.qr_img.url}}" alt=""></div>
+
+   </div>
 {% endfor %}
+        {% else %}
+       <h1>Chưa có vé nào được đặt</h1>
+   {% endif %}
 
-
+   
     </div>
 </body>
 
