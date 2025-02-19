@@ -2,7 +2,11 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from util.models import QrCheckEvent
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
+# bỏ qua csrf
+@method_decorator(csrf_exempt, name='post')
 class Checkin(APIView):
     def post(self, request):
         data = request.data
@@ -15,7 +19,11 @@ class Checkin(APIView):
         qr_code = QrCheckEvent.objects.filter(event_id=event_id, user_id=user_id).first()
 
         if qr_code:
-            qr_code.da_tham_gia = True
+            if qr_code.da_tham_gia ==True:
+                return  Response({"message": "vé đã được sử dụng!"}, status=status.HTTP_200_OK)
+            else:
+                qr_code.da_tham_gia =True
+                qr_code.save()
             qr_code.save()
             return Response({"message": "Check in thành công"}, status=status.HTTP_200_OK)
         else:

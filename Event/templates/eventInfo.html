@@ -163,12 +163,16 @@
                     <form method="post"  enctype="multipart/form-data">
                         {% csrf_token %}
                  
-          {% if user.email %}
+         {% if user_have_ticket %}
+         <h3>Bạn đã mua vé trước đó hãy xem vé của bạn ở <a href="{% url 'my-ticket' %}">đây</a></h3>
+                        {% else%}
+                        {% if user.email %}
                             
-          <button class="order-btn"  type="submit">Đặt vé ngay</button>
-          {% else %}
-          <h3>Yêu cầu đăng nhập để đặt vé</h3>
-          {% endif %}
+                        <button class="order-btn"  type="submit">Đặt vé ngay</button>
+                        {% else %}
+                        <h3>Yêu cầu đăng nhập để đặt vé</h3>
+                        {% endif %}
+         {% endif %}
                       </form>
                   
                 </div>

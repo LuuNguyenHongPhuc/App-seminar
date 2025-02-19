@@ -40,9 +40,17 @@ class EventInfo(View):
         context ={}
         event =EventModel.objects.filter(id=id).first()
         event_id =event.id
+        user =getContextUser(request=request)
         boxs_images =BoxImage.objects.filter(id_event=event_id).all()
+        myticket =QrCheckEvent.objects.filter(user_id=user.id,event_id=id)
+        if myticket.exists():
+            user_have_ticket =True
+        else:
+            user_have_ticket =None
         context["event"]=event
         context["boxs_images"]=boxs_images
+        context["user_have_ticket"] =user_have_ticket
+
         return render(template_name="eventInfo.html",request=request,context=context)
     # dang ky event
     def post(self,request,id):

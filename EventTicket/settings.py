@@ -109,7 +109,9 @@ DATABASES = {
         }
     }
 }
+LOGOUT_REDIRECT_URL = '/home'   # chuyển hướng trang web sau khi đăng xuất
 
+ALLOWED_HOSTS = ['192.168.1.5', 'localhost', '127.0.0.1'] ## cho phép các địa chỉ có thể truy cập qua mạng lan
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

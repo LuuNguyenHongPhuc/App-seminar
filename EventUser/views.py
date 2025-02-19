@@ -125,6 +125,6 @@ class UseerFix(View):
 class Logout(View):
     def post(self,request):
         logout(request=request)
-        return redirect("login")
+        return redirect("home")
         
 
