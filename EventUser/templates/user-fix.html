@@ -1,5 +1,61 @@
-DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #5fbaff, #7bd7fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input, select, textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 45%;
+}
+
+button.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button.btn:hover {
+  background-color: #0056b3;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ user.email }}</title>

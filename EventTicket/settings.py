@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'event_ticket',
         'USER': 'root', 
-        'PASSWORD': '', 
+        'PASSWORD': 'baotung1232005', 
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
