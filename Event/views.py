@@ -31,10 +31,11 @@ class EventCreatorView(View):
             images = request.FILES.getlist("images")
             for image in images:
                 new_image =BoxImage.objects.create(id_event=event.id,img=image)
-            # return  render(template_name="eventcreator.html",request=request,context={"form":form,"form_images":form_images})
-            redirect("/adminpanel")
-        else:
-            print(form.errors)
+            
+            # redirect("/adminpanel")
+        
+        # redirect("/adminpanel")
+        return  render(template_name="eventcreator.html",request=request,context={"form":form,"form_images":form_images})
 class EventInfo(View):
     def get(self,request,id):
         context ={}
