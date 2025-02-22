@@ -63,7 +63,7 @@ class EventModel(models.Model):
     start_time =models.DateField()
     thumb =models.ImageField(upload_to="thumb/")
     end_time =models.DateField()
-    map_ifram =models.CharField(max_length=266,null=True)
+    # map_ifram =models.CharField(max_length=266,null=True)
     video =models.FileField(upload_to="video/",null=True)
     author =models.CharField(max_length=266)
    

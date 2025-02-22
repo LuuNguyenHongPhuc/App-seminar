@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'event_ticket',
         'USER': 'root', 
-        'PASSWORD': 'baotung1232005', 
+        'PASSWORD': '', 
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -111,7 +111,7 @@ DATABASES = {
 }
 LOGOUT_REDIRECT_URL = '/home'   # chuyển hướng trang web sau khi đăng xuất
 
-ALLOWED_HOSTS = ['192.168.1.5', 'localhost', '127.0.0.1'] ## cho phép các địa chỉ có thể truy cập qua mạng lan
+ALLOWED_HOSTS = ['192.168.1.5','172.20.10.3', 'localhost', '127.0.0.1'] ## cho phép các địa chỉ có thể truy cập qua mạng lan
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

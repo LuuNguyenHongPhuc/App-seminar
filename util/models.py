@@ -25,14 +25,14 @@ class QrCheckObject(models.Manager):
             return qr
         return None
 
-    def checkQr(self, user_id, event_id):
-        qr = self.filter(user_id=user_id, event_id=event_id)
-        if qr.exists():
-            qr_instance = qr.first()
-            qr_instance.da_tham_gia = True
-            qr_instance.save()
-            return True
-        return False
+    # def checkQr(self, user_id, event_id):
+    #     qr = self.filter(user_id=user_id, event_id=event_id).first()
+    #     if qr.exists():
+    #         qr_instance = qr
+    #         qr_instance.da_tham_gia = True
+    #         qr_instance.save()
+    #         return True
+    #     return False
 
 class QrCheckEvent(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
